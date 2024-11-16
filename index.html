@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Random Meme Generator</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background: linear-gradient(135deg, #ff6f61, #ffcc00);
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
+        }
+
+        label, button {
+            font-size: 1.2rem;
+            margin: 15px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        label {
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        select {
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #ff5733;
+            transform: scale(1.05);
+        }
+
+        .meme-preview {
+            margin-top: 30px;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .meme-preview img {
+            max-width: 80%;
+            max-height: 500px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+        }
+
+        .meme-preview img.show {
+            opacity: 1;
+        }
+
+        .loading {
+            display: none;
+            font-size: 1.5rem;
+            color: #ffcc00;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #28a745;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .share-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .meme-preview img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Super Random Meme Generator</h1>
+
+    <label for="memeType">Choose Meme Type:</label>
+    <select id="memeType">
+        <option value="image">Static Meme</option>
+        <option value="gif">Animated Meme (GIF)</option>
+    </select>
+
+    <button id="generateBtn">Generate Meme</button>
+
+    <div class="loading" id="loading">Loading...</div>
+
+    <div class="meme-preview">
+        <h2>Your Meme is Ready:</h2>
+        <img id="memeImage" src="" alt="Generated meme will appear here" class="hidden">
+    </div>
+
+    <button class="share-btn" id="shareBtn" style="display:none;">Share Meme</button>
+
+    <script>
+        const generateBtn = document.getElementById('generateBtn');
+        const memeImage = document.getElementById('memeImage');
+        const memeTypeSelect = document.getElementById('memeType');
+        const loadingIndicator = document.getElementById('loading');
+        const shareBtn = document.getElementById('shareBtn');
+
+        generateBtn.addEventListener('click', () => {
+            loadingIndicator.style.display = 'block';
+            memeImage.classList.remove('show');
+            shareBtn.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
