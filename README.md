@@ -6,3 +6,6 @@ This project is a meme generator that allows users to create memes either from s
 
 ### Day 1
 - Set up the basic HTML structure for the meme generator.
+
+### Day 2
+- Improved styling and added responsive design.
