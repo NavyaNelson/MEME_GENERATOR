@@ -125,10 +125,93 @@
         const loadingIndicator = document.getElementById('loading');
         const shareBtn = document.getElementById('shareBtn');
 
+        async function getMemeTemplates() {
+            const url = 'https://api.imgflip.com/get_memes';
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.data.memes;
+        }
+
+        async function generateStaticMeme() {
+            try {
+                const memes = await getMemeTemplates();
+                const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+
+                const topText = 'Random Meme';
+                const bottomText = 'Generated using Imgflip API';
+
+                const memeUrl = await generateMeme(randomMeme.id, topText, bottomText);
+                displayMeme(memeUrl);
+            } catch (error) {
+                console.error('Error generating static meme:', error);
+                loadingIndicator.style.display = 'none';
+            }
+        }
+
+        async function generateMeme(templateId, topText, bottomText) {
+            const url = 'https://api.imgflip.com/caption_image';
+            const params = new URLSearchParams({
+                template_id: templateId,
+                username: 'Navya_8324',  // Replace with your Imgflip username
+                password: 'navii123#',  // Replace with your Imgflip password
+                text0: topText,
+                text1: bottomText
+            });
+
+            const response = await fetch(`${url}?${params.toString()}`);
+            const data = await response.json();
+
+            if (data.success) {
+                return data.data.url;
+            } else {
+                throw new Error('Failed to generate meme');
+            }
+        }
+
+        async function getRandomGif() {
+            const apiKey = 'mE3nTq0qX6QjrNOr9xWqUJHLekPRbORS'; // Your Giphy API key
+            const url = `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=meme&rating=G`;
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.data.images.original.url;
+        }
+
+        async function generateGifMeme() {
+            try {
+                const gifUrl = await getRandomGif();
+                displayMeme(gifUrl);
+            } catch (error) {
+                console.error('Error generating GIF meme:', error);
+                loadingIndicator.style.display = 'none';
+            }
+        }
+
+        function displayMeme(url) {
+            memeImage.src = url;
+            memeImage.classList.add('show');
+            loadingIndicator.style.display = 'none';
+            shareBtn.style.display = 'inline-block';
+        }
+
         generateBtn.addEventListener('click', () => {
             loadingIndicator.style.display = 'block';
             memeImage.classList.remove('show');
             shareBtn.style.display = 'none';
+
+            const memeType = memeTypeSelect.value;
+
+            if (memeType === 'image') {
+                generateStaticMeme();
+            } else if (memeType === 'gif') {
+                generateGifMeme();
+            }
+        });
+
+        shareBtn.addEventListener('click', () => {
+            const memeUrl = memeImage.src;
+            const text = encodeURIComponent('Check out this random meme!');
+            const twitterUrl = `https://twitter.com/intent/tweet?url=${memeUrl}&text=${text}`;
+            window.open(twitterUrl, '_blank');
         });
     </script>
 
