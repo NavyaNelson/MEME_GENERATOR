@@ -9,3 +9,6 @@ This project is a meme generator that allows users to create memes either from s
 
 ### Day 2
 - Improved styling and added responsive design.
+
+### Day 3
+- Implemented static meme generation from the Imgflip API.
