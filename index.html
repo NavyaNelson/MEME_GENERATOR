@@ -125,6 +125,7 @@
         const loadingIndicator = document.getElementById('loading');
         const shareBtn = document.getElementById('shareBtn');
 
+        // Function to fetch meme templates from Imgflip API (for static memes)
         async function getMemeTemplates() {
             const url = 'https://api.imgflip.com/get_memes';
             const response = await fetch(url);
@@ -132,6 +133,7 @@
             return data.data.memes;
         }
 
+        // Function to generate static meme
         async function generateStaticMeme() {
             try {
                 const memes = await getMemeTemplates();
@@ -148,6 +150,7 @@
             }
         }
 
+        // Function to generate meme using Imgflip API (for static images)
         async function generateMeme(templateId, topText, bottomText) {
             const url = 'https://api.imgflip.com/caption_image';
             const params = new URLSearchParams({
@@ -168,6 +171,7 @@
             }
         }
 
+        // Function to fetch a random meme GIF from Giphy API
         async function getRandomGif() {
             const apiKey = 'mE3nTq0qX6QjrNOr9xWqUJHLekPRbORS'; // Your Giphy API key
             const url = `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=meme&rating=G`;
@@ -176,6 +180,7 @@
             return data.data.images.original.url;
         }
 
+        // Function to generate a random animated meme (GIF)
         async function generateGifMeme() {
             try {
                 const gifUrl = await getRandomGif();
@@ -193,6 +198,7 @@
             shareBtn.style.display = 'inline-block';
         }
 
+        // Event listener for button click to generate a meme
         generateBtn.addEventListener('click', () => {
             loadingIndicator.style.display = 'block';
             memeImage.classList.remove('show');
@@ -207,6 +213,7 @@
             }
         });
 
+        // Share meme button functionality
         shareBtn.addEventListener('click', () => {
             const memeUrl = memeImage.src;
             const text = encodeURIComponent('Check out this random meme!');
@@ -217,3 +224,4 @@
 
 </body>
 </html>
+
