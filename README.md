@@ -12,3 +12,11 @@ This project is a meme generator that allows users to create memes either from s
 
 ### Day 3
 - Implemented static meme generation from the Imgflip API.
+
+### Day 4
+- Added the functionality to fetch random meme GIFs from the Giphy API.
+- Finalized the project with a share button for sharing memes on Twitter.
+
+
+
+
