@@ -1,4 +1,4 @@
-# Super Random Meme Generator
+# Random Meme Generator
 
 This project is a meme generator that allows users to create memes either from static images or animated GIFs. It utilizes the Imgflip API for static memes and the Giphy API for GIF memes.
 
