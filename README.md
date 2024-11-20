@@ -2,7 +2,7 @@
 
 This project is a meme generator that allows users to create memes either from static images or animated GIFs. It utilizes the Imgflip API for static memes and the Giphy API for GIF memes.
 
-## Progress Over 5 Days
+## Progress Over 4 Days
 
 ### Day 1
 - Set up the basic HTML structure for the meme generator.
